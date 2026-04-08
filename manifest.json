@@ -1,0 +1,64 @@
+{
+  "plugin_id": "org.ramindex.dispatcharr",
+  "version": "0.1.0",
+  "checksum": "__CHECKSUM__",
+  "continuum_api_version": "v1",
+  "capabilities": [
+    {
+      "type": "scheduled_task.v1",
+      "id": "dispatcharr-sync",
+      "display_name": "Dispatcharr Sync",
+      "description": "Refreshes Live TV channel and guide data from Dispatcharr."
+    },
+    {
+      "type": "http_routes.v1",
+      "id": "dispatcharr-routes",
+      "display_name": "Dispatcharr Routes",
+      "description": "Serves plugin status and playback-related HTTP endpoints."
+    }
+  ],
+  "http_routes": [
+    {
+      "id": "dispatcharr-status",
+      "method": "GET",
+      "path": "/dispatcharr/status",
+      "access": "admin",
+      "navigable": false
+    },
+    {
+      "id": "dispatcharr-player",
+      "method": "GET",
+      "path": "/dispatcharr/player",
+      "access": "authenticated",
+      "navigable": true,
+      "navigation_label": "Live TV",
+      "navigation_kind": "user"
+    },
+    {
+      "id": "dispatcharr-channels",
+      "method": "GET",
+      "path": "/dispatcharr/channels",
+      "access": "authenticated",
+      "navigable": false
+    },
+    {
+      "id": "dispatcharr-guide",
+      "method": "GET",
+      "path": "/dispatcharr/guide",
+      "access": "authenticated",
+      "navigable": false
+    },
+    {
+      "id": "dispatcharr-stream",
+      "method": "GET",
+      "path": "/dispatcharr/stream",
+      "access": "authenticated",
+      "navigable": false
+    }
+  ],
+  "metadata": {
+    "display_name": "Dispatcharr",
+    "summary": "Dispatcharr-backed Live TV source for Continuum.",
+    "jellyfin_api_integration": true
+  }
+}

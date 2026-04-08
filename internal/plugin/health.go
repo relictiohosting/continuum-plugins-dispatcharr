@@ -1,0 +1,31 @@
+package plugin
+
+import "github.com/relictiohosting/continuum-plugins/dispatcharr/internal/cache"
+
+type HealthPayload struct {
+	Status          string `json:"status"`
+	SourceID        string `json:"sourceId"`
+	SourceName      string `json:"sourceName"`
+	ChannelCount    int    `json:"channelCount"`
+	ProgramCount    int    `json:"programCount"`
+	LastSuccessUnix int64  `json:"lastSuccessUnix"`
+	LastFailureUnix int64  `json:"lastFailureUnix"`
+	LastError       string `json:"lastError,omitempty"`
+}
+
+func BuildHealthPayload(snapshot cache.Snapshot) HealthPayload {
+	status := "ok"
+	if snapshot.Health.LastError != "" {
+		status = "error"
+	}
+	return HealthPayload{
+		Status:          status,
+		SourceID:        snapshot.Catalog.Source.ID,
+		SourceName:      snapshot.Catalog.Source.Name,
+		ChannelCount:    len(snapshot.Catalog.Channels),
+		ProgramCount:    len(snapshot.Catalog.Programs),
+		LastSuccessUnix: snapshot.Health.LastSuccessUnix,
+		LastFailureUnix: snapshot.Health.LastFailureUnix,
+		LastError:       snapshot.Health.LastError,
+	}
+}
