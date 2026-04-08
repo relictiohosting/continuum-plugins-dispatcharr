@@ -107,4 +107,3 @@ The least-wrong future direction is:
 
 - `docs/continuum-host-gap.md`
 - `docs/sdk-fit-notes.md`
-- `docs/superpowers/specs/2026-03-30-dispatcharr-continuum-plugin-design.md`

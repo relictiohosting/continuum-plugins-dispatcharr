@@ -39,6 +39,8 @@ Dispatcharr-specific Continuum plugin for exposing a shared **Live TV** source t
 See also:
 - `docs/continuum-host-gap.md`
 - `docs/continuum-host-change-proposal.md`
+- `docs/sdk-fit-notes.md`
+- `docs/demo-checklist.md`
 
 ## Build
 
@@ -57,6 +59,16 @@ The repository includes `.gitlab-ci.yml` to run tests and produce versioned plug
   - generated manifest JSON from each binary (`<binary>.manifest.json`)
   - SHA256 files (`<binary>.sha256`)
 
+## GitHub Actions builds and releases
+
+The repository also includes `.github/workflows/ci.yml` for GitHub-hosted runners.
+
+- Runs tests on every pull request and push.
+- Builds Linux binaries for `amd64` and `arm64`.
+- Publishes a GitHub Release on every push:
+  - `main` branch pushes publish prerelease snapshots (`snapshot-<sha>` tags).
+  - `v*` tags publish normal releases.
+
 ## Test
 
 ```bash
@@ -68,3 +80,7 @@ go test ./... -v
 ```bash
 go run . manifest
 ```
+
+## License
+
+`continuum-plugin-dispatcharr` is licensed under `AGPL-3.0-or-later`. See `LICENSE`.
